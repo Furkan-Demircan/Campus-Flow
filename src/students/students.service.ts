@@ -4,7 +4,7 @@ import { CreateStudentRequestDto } from './dto/request/createStudent.request.dto
 @Injectable()
 export class StudentsService {
   create(createStudentDto: CreateStudentRequestDto) {
-    return 'This action adds a new student';
+    return createStudentDto;
   }
 
   findAll() {
