@@ -1,9 +1,4 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common';
 import { Response } from 'express';
 import { BaseResponse } from 'src/_base/response/base.response';
 import { ResponseMessages } from '../enums/ResponseMessager.enum';
@@ -23,9 +18,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     console.log(status, exception.message, validationMessage);
 
     if (validationMessage) {
-      return response
-        .status(status)
-        .json(new BaseResponse(null, exception.message, false));
+      return response.status(status).json(new BaseResponse(null, exception.message, false));
     } else {
       let responseMessage: string;
       switch (status) {
@@ -45,9 +38,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
           responseMessage = ResponseMessages.BAD_GATEWAY + exception.message;
       }
 
-      response
-        .status(status)
-        .json(new BaseResponse(null, responseMessage, false));
+      response.status(status).json(new BaseResponse(null, responseMessage, false));
     }
   }
 }

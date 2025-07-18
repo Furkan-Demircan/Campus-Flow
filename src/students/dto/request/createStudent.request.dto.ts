@@ -10,25 +10,16 @@ export class CreateStudentRequestDto {
   })
   name: string;
   @IsNotEmpty({
-    message: getValidationMessage(
-      DtoPrefix.LAST_NAME,
-      ValidationType.IS_NOT_EMPTY,
-    ),
+    message: getValidationMessage(DtoPrefix.LAST_NAME, ValidationType.IS_NOT_EMPTY),
   })
   lastName: string;
   @IsNotEmpty({
-    message: getValidationMessage(
-      DtoPrefix.IDENTITY_NUMBER,
-      ValidationType.IS_NOT_EMPTY,
-    ),
+    message: getValidationMessage(DtoPrefix.IDENTITY_NUMBER, ValidationType.IS_NOT_EMPTY),
   })
   @IsNumber(
     {},
     {
-      message: getValidationMessage(
-        DtoPrefix.IDENTITY_NUMBER,
-        ValidationType.MUST_BE_NUMBER,
-      ),
+      message: getValidationMessage(DtoPrefix.IDENTITY_NUMBER, ValidationType.MUST_BE_NUMBER),
     },
   )
   identityNumber: number;
