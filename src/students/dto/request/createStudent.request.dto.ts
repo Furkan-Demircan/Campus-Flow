@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import {
   getValidationMessage,
   DtoPrefix,
@@ -9,8 +9,27 @@ export class CreateStudentRequestDto {
     message: getValidationMessage(DtoPrefix.NAME, ValidationType.IS_NOT_EMPTY),
   })
   name: string;
-  @IsNotEmpty({ message: 'Last name is required' })
+  @IsNotEmpty({
+    message: getValidationMessage(
+      DtoPrefix.LAST_NAME,
+      ValidationType.IS_NOT_EMPTY,
+    ),
+  })
   lastName: string;
-  @IsNotEmpty({ message: 'Identity number is required' })
+  @IsNotEmpty({
+    message: getValidationMessage(
+      DtoPrefix.IDENTITY_NUMBER,
+      ValidationType.IS_NOT_EMPTY,
+    ),
+  })
+  @IsNumber(
+    {},
+    {
+      message: getValidationMessage(
+        DtoPrefix.IDENTITY_NUMBER,
+        ValidationType.MUST_BE_NUMBER,
+      ),
+    },
+  )
   identityNumber: number;
 }
